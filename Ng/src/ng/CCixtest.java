@@ -1,6 +1,5 @@
 package ng;
 
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -20,7 +19,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-
 import logger.TestLogger;
 
 public class CCixtest {
@@ -122,7 +120,7 @@ public class CCixtest {
         	String in=id.toString();
         	System.out.println("Generated activity id is:"+in);
 		//modify activity id
-		modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","007d0294c6db55a34",in);
+		modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",in);
 		
     		ani=ani+000-000-0001;
 			
@@ -158,7 +156,7 @@ public class CCixtest {
 					WebElement button = t.findElement(By.xpath("//*[@id='start_call']/div[2]/div[2]/input"));
 					button.click();
 					//re-modify activityid
-					modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",in,"007d0294c6db55a34");
+					modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",in,"23005CA1-282E-400A-069C-CC2EA423A7EC");
 					//re-modify ani
 					modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",a,"123-123-1234");
 					//re-modify dnis
@@ -168,7 +166,7 @@ public class CCixtest {
 		
     //transaction
 	//modify activity id		
-	modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt","007d0294c6db55a34",in);
+	modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",in);
 	//modify ani
 	modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt","123-123-1234",a);
 	//modify upfrontani
@@ -205,7 +203,7 @@ public class CCixtest {
 		WebElement button1 = t.findElement(By.xpath("//*[@id='call_trasaction']/div[2]/div[2]/input"));
 		button1.click();
 		//re-modify activity id
-		modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",in,"007d0294c6db55a34");
+		modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",in,"23005CA1-282E-400A-069C-CC2EA423A7EC");
 		//re-modify ani
 		modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",a,"123-123-1234");
 		//modify upfrontani
@@ -224,7 +222,7 @@ public class CCixtest {
 		TestLogger.getLogger().info("Transaction completed");
 		//end transaction
 		//modify activity id		
-		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt","007d0294c6db55a34",in);
+		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",in);
 		//modify ani
 		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt","123-123-1234",a);
 		//modify dnis
@@ -248,7 +246,7 @@ public class CCixtest {
 		WebElement button2 = t.findElement(By.xpath("//*[@id='end_call']/div[2]/div[2]/input"));
 		button2.click();
 		//re-modify activityid
-		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt",in,"007d0294c6db55a34");
+		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt",in,"23005CA1-282E-400A-069C-CC2EA423A7EC");
 		//re-modify ani
 		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt",a,"123-123-1234");
 		//re-modify dnis
