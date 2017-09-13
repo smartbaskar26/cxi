@@ -1,0 +1,15 @@
+{
+"requestObj": {
+    "callId": "007d0294c6db55a34",
+    "menuName": "ENTRY_USER_DATA",	 
+    "kvp": {
+      "ANI": "123-123-1234",
+      "ENTRY_TIME": "2017-08-23 11:03:21:962",
+      "DNIS": "12345",
+	  "REGION":"south",
+	  "LANGUAGE":"english",
+	  "IVR_EXPER":"Customer Service",
+	  "BUSINESS_HOURS":"Y"
+    }
+  }
+}

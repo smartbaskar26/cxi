@@ -1,0 +1,47 @@
+{
+  "CXI_Report": {
+    "CXI_Object": [
+      {
+        "callId": "007d0294c6db55a34",
+        "menuName": "Outage",
+        "kvp": {
+		"ANI": "123-123-1234",
+		 "DNIS": "12340",
+          "EXIT_CONDITION": "Start",
+          "ENTRY_TIME": "2017-08-23 11:04:21:962",
+          "RETURN_CODE": "SUCCESS",
+          "UTTERANCE": "3",
+		  "SSN":"1234"
+        }
+      },
+      {
+        "callId": "007d0294c6db55a34",
+        "menuName": "UpFrontOutage",
+        "kvp": {
+		"ANI": "123-123-1234",
+		 "DNIS": "12340",
+          "TURN_COUNT": "1",
+          "ENTRY_TIME": "2017-08-23 11:04:21:962",
+          "PROMPT_NAME": "nve0202_i_04",
+          "EXIT_CONDITION": "F Requested Operator",
+          "INPUT_MODE": "DTMF",
+          "RETURN_VALUE": "Agent",
+		   "SSN":"1234"
+        }
+      },
+      {
+        "callId": "007d0294c6db55a34",
+        "menuName": "Streetlight",
+        "kvp": {
+		"ANI": "123-123-1234",
+		 "DNIS": "12340",
+          "ENTRY_TIME": "2017-08-23 11:04:21:962",
+          "NO_INPUT_COUNT": "0",
+          "NO_MATCHES_COUNT": "2",
+          "TASK_COMPLETION_STATUS": "COMPLETED",
+		   "SSN":"1234"
+        }
+      }
+    ]
+  }
+}
