@@ -6,6 +6,8 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
@@ -14,16 +16,69 @@ import org.junit.Before;
 import org.junit.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.remote.DesiredCapabilities;
+import org.openqa.selenium.remote.RemoteWebDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import logger.TestLogger;
 
 public class CCixtest {
 	
 	WebDriver t;
+	String nodeurl;
+	//Logger log = Logger.getLogger(CCixtest.class);
+	
+	public void modifyFile(String filePath, String oldString, String newString) {
+		 
+		File fileToBeModified = new File(filePath);
+
+		String oldContent = "";
+
+		BufferedReader reader = null;
+
+		FileWriter writer = null;
+
+		try {
+			reader = new BufferedReader(new FileReader(fileToBeModified));
+
+			// Reading all the lines of input text file into oldContent
+
+			String line = reader.readLine();
+
+			while (line != null) {
+				oldContent = oldContent + line + System.lineSeparator();
+
+				line = reader.readLine();
+			}
+
+			// Replacing oldString with newString in the oldContent
+
+			String newContent = oldContent.replaceAll(oldString, newString);
+
+			// Rewriting the input text file with newContent
+
+			writer = new FileWriter(fileToBeModified);
+
+			writer.write(newContent);
+		} catch (IOException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// Closing the resources
+
+				reader.close();
+
+				writer.close();
+			} catch (IOException e) {
+				e.printStackTrace();
+
+			}
+		}
+	
+ }
+	
 	//HtmlUnitDriver t=new HtmlUnitDriver();
 	/*@Test(priority=1,dataProvider = "replace value", dataProviderClass = Dataprovidercalss.class)
 	public void f(String replace1) throws InterruptedException, FileNotFoundException {
@@ -109,7 +164,10 @@ public class CCixtest {
 	@Test
 	public void test1() throws FileNotFoundException, InterruptedException
 	{
-	TestLogger.getLogger().info("test1 Started");
+		
+		/*PropertyConfigurator.configure("D:\\github\\Ng\\src\\log4j.properties");
+	log.info("test1 Started");*/
+		
 		try{
 		//Start Transaction
 		int ani=789-456-1597;
@@ -119,6 +177,7 @@ public class CCixtest {
         	UUID id = UUID.randomUUID();
         	String in=id.toString();
         	System.out.println("Generated activity id is:"+in);
+        	//log.info("Activity Id Generated");
 		//modify activity id
 		modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",in);
 		
@@ -127,6 +186,7 @@ public class CCixtest {
 			String k=String.valueOf(ani);
 			String a=("123-123")+(k);
 			System.out.println("Generated ani is :"+a);
+			//log.info("ani Generated");
 		// modify ani check
 		modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","123-123-1234",a);
 		
@@ -134,6 +194,7 @@ public class CCixtest {
 			dnis=dnis+1;
 			String k1=String.valueOf(dnis);
 			System.out.println("Genearted dnis is:"+dnis);
+			//log.info("dnis Generated");
 		//modify dnis check
 			modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","12345",k1);
 			WebDriverWait o = new WebDriverWait(t, 50);
@@ -161,7 +222,7 @@ public class CCixtest {
 					modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",a,"123-123-1234");
 					//re-modify dnis
 					modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",k1,"12345");
-					TestLogger.getLogger().info("Start transaction completed");
+					//log.info("Start transaction completed");
 	Thread.sleep(1000);
 		
     //transaction
@@ -219,7 +280,7 @@ public class CCixtest {
 		//re-modify ssn
 		modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",m,"1234");
 		Thread.sleep(1000);
-		TestLogger.getLogger().info("Transaction completed");
+		//log.info("Transaction completed");
 		//end transaction
 		//modify activity id		
 		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",in);
@@ -252,7 +313,7 @@ public class CCixtest {
 		//re-modify dnis
 		modifyFile("C:\\Users\\baskarane\\Desktop\\3333.txt",k1,"12345");
 		Thread.sleep(1000);
-		TestLogger.getLogger().info("End transaction completed");
+		//log.info("End transaction completed");
 		}}
 	catch (Exception e) {
 		System.out.println(e.toString());
@@ -260,22 +321,21 @@ public class CCixtest {
 		
 		}
 	
-	@Test
+	/*@Test
 	public void test2() throws InterruptedException
 	{
-		TestLogger.getLogger().info("Test2 Started");
-		
+		//log.info("Test2 Started");
 		try{
 		//Start Transaction
 				int ani=789-654-7951;
 				int dnis=78945;
 				int ssn=5713;
-				for(int i=1;i<10;i++){
+				for(int i=1;i<2;i++){
 		        	UUID id = UUID.randomUUID();
 		        	String in=id.toString();
 		        	System.out.println("Generated activity id is:"+in);
 				//modify activity id
-				modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","007d0294c6db55a34",in);
+				modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",in);
 				
 		    		ani=ani+000-000-0001;
 					
@@ -283,7 +343,7 @@ public class CCixtest {
 					String a=("123-123")+(k);
 					System.out.println("Generated ani is :"+a);
 				// modify ani check
-				modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","123-123-1234",a);
+				modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",a);
 				
 
 					dnis=dnis+1;
@@ -311,17 +371,17 @@ public class CCixtest {
 							WebElement button = t.findElement(By.xpath("//*[@id='start_call']/div[2]/div[2]/input"));
 							button.click();
 							//re-modify activityid
-							modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",in,"007d0294c6db55a34");
+							modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",in,"23005CA1-282E-400A-069C-CC2EA423A7EC");
 							//re-modify ani
 							modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",a,"123-123-1234");
 							//re-modify dnis
 							modifyFile("C:\\Users\\baskarane\\Desktop\\1111.txt",k1,"12345");
-							TestLogger.getLogger().info("start transaction completed");
+							//log.info("start transaction completed");
 			Thread.sleep(1000);
 			
 			//transaction
 			//modify activity id		
-			modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt","007d0294c6db55a34",in);
+			modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt","23005CA1-282E-400A-069C-CC2EA423A7EC",in);
 			//modify ani
 			modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt","123-123-1234",a);
 			//modify upfrontani
@@ -358,7 +418,7 @@ public class CCixtest {
 				WebElement button1 = t.findElement(By.xpath("//*[@id='call_trasaction']/div[2]/div[2]/input"));
 				button1.click();
 				//re-modify activity id
-				modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",in,"007d0294c6db55a34");
+				modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",in,"23005CA1-282E-400A-069C-CC2EA423A7EC");
 				//re-modify ani
 				modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",a,"123-123-1234");
 				//modify upfrontani
@@ -374,7 +434,7 @@ public class CCixtest {
 				//re-modify ssn
 				modifyFile("C:\\Users\\baskarane\\Desktop\\2222.txt",m,"1234");
 				Thread.sleep(1000);
-				TestLogger.getLogger().info("transaction completed");
+				//log.info("transaction completed");
 				t.get("http://192.168.1.40:8080/CXiReport_v1.2/");
 				
 				}
@@ -383,72 +443,27 @@ public class CCixtest {
 			System.out.println(e.toString());
 		}
 		
-	}
+	}*/
 	@Before
-	public void setUp() throws InterruptedException
-	{
-		System.setProperty("webdriver.chrome.driver","C:\\Users\\baskarane\\Desktop\\chromedriver.exe");
-		 t=new ChromeDriver();
+	public void setUp() throws MalformedURLException
+
+	{ 
+		nodeurl="http://localhost:4444/wb/hub";
+		DesiredCapabilities y= DesiredCapabilities.chrome();
+		y.setBrowserName("chrome");
+		y.setPlatform(Platform.WIN8_1);
+		t=new RemoteWebDriver(new URL(nodeurl),y);
+		/*System.setProperty("phantomjs.binary.path","C:\\Users\\baskarane\\Desktop\\phantomjs.exe");
+		 t=new PhantomJSDriver();*/
 		t.manage().window().maximize();
 		t.get("http://192.168.1.40:8080/CXiReport_v1.2/");
-		Thread.sleep(2000);
-		
 	}
 	
 	@After
 	public void teadDown()
 	{
-		
 		t.close();
-		
 	}
 	
- static void modifyFile(String filePath, String oldString, String newString) {
-	 
-		File fileToBeModified = new File(filePath);
-
-		String oldContent = "";
-
-		BufferedReader reader = null;
-
-		FileWriter writer = null;
-
-		try {
-			reader = new BufferedReader(new FileReader(fileToBeModified));
-
-			// Reading all the lines of input text file into oldContent
-
-			String line = reader.readLine();
-
-			while (line != null) {
-				oldContent = oldContent + line + System.lineSeparator();
-
-				line = reader.readLine();
-			}
-
-			// Replacing oldString with newString in the oldContent
-
-			String newContent = oldContent.replaceAll(oldString, newString);
-
-			// Rewriting the input text file with newContent
-
-			writer = new FileWriter(fileToBeModified);
-
-			writer.write(newContent);
-		} catch (IOException e) {
-			e.printStackTrace();
-		} finally {
-			try {
-				// Closing the resources
-
-				reader.close();
-
-				writer.close();
-			} catch (IOException e) {
-				e.printStackTrace();
-
-			}
-		}
-	
- }
+ 
 }
